@@ -19,3 +19,4 @@ C:\Users\adria\source\repos\ShortcutsReader\obj\Debug\net8.0-windows\ShortcutsRe
 C:\Users\adria\source\repos\ShortcutsReader\obj\Debug\net8.0-windows\ShortcutsReader.genruntimeconfig.cache
 C:\Users\adria\source\repos\ShortcutsReader\obj\Debug\net8.0-windows\ref\ShortcutsReader.dll
 C:\Users\adria\source\repos\ShortcutsReader\bin\Debug\net8.0-windows\ShortcutsReader.dll.config
+C:\Users\adria\source\repos\ShortcutsReader\obj\Debug\net8.0-windows\ShortcutsReader.sourcelink.json

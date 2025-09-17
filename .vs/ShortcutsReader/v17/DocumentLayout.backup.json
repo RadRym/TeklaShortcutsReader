@@ -42,8 +42,8 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml*",
+              "RelativeToolTip": "MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-09-13T15:42:08.361Z",
               "EditorCaption": ""
@@ -54,9 +54,9 @@
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAIA2wHsAAAAmAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "MainWindow.xaml.cs*",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAowKcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-13T15:42:07.811Z",
               "EditorCaption": ""

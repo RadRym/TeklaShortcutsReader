@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShortcutsReader"
         mc:Ignorable="d"
-        Title="Keyboard Shortcuts" Height="500" Width="400"
+        Title="Keyboard Shortcuts" Height="550" Width="400"
         Topmost="True"
         Closing="Window_Closing"
         >
@@ -13,16 +13,29 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <!-- File path section -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="File path:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="File path:" VerticalAlignment="Center" Margin="0,0,10,0" Width="50"/>
             <TextBox Name="txtFilePath" Width="200" Height="25"/>
             <Button Name="btnLoad" Content="Load" Width="60" Height="25" Margin="10,0,0,0" Click="btnLoad_Click"/>
         </StackPanel>
-        <TextBlock Grid.Row="1" Name="lblStatus" Text="Paste XML file path and click Load" 
+
+        <!-- Search section -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Search:" VerticalAlignment="Center" Margin="0,0,10,0"  Width="50"/>
+            <TextBox Name="txtShortcutName" Width="200" Height="25" TextChanged="txtShortcutName_TextChanged"/>
+        </StackPanel>
+
+        <!-- Status -->
+        <TextBlock Grid.Row="2" Name="lblStatus" Text="Paste XML file path and click Load" 
                    Foreground="Gray" Margin="0,0,0,10"/>
-        <TextBox Grid.Row="2" Name="txtShortcuts" IsReadOnly="True" 
+
+        <!-- Shortcuts display -->
+        <TextBox Grid.Row="3" Name="txtShortcuts" IsReadOnly="True" 
                  VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="10"
                  Background="WhiteSmoke" Text="Shortcuts will appear here..."/>
     </Grid>

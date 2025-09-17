@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Xml;
@@ -164,6 +165,51 @@ namespace ShortcutsReader
         private int CountLines(string text)
         {
             return string.IsNullOrEmpty(text) ? 0 : text.Split('\n').Count(line => !string.IsNullOrWhiteSpace(line));
+        }
+
+        private void txtShortcutName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PerformSearch();
+        }
+
+        private void PerformSearch()
+        {
+            string searchTerm = txtShortcutName.Text.Trim();
+
+            if (string.IsNullOrEmpty(_allShortcuts))
+            {
+                lblStatus.Text = "First load shortcuts from XML file!";
+                return;
+            }
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                // Jeśli pole wyszukiwania jest puste, pokaż wszystkie skróty
+                txtShortcuts.Text = _allShortcuts;
+                lblStatus.Text = $"Showing all {CountLines(_allShortcuts)} keyboard shortcuts.";
+                return;
+            }
+
+            // Wyszukaj skróty zawierające podany tekst (case-insensitive)
+            var lines = _allShortcuts.Split('\n');
+            var filtered = lines.Where(line =>
+                line.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace(line)
+            ).ToArray();
+
+            txtShortcuts.Text = string.Join("\n", filtered);
+            lblStatus.Text = $"Search '{searchTerm}' - found {filtered.Length} shortcuts.";
+        }
+
+        // Dodaj również metodę do czyszczenia wyszukiwania (opcjonalnie)
+        private void ClearSearch()
+        {
+            txtShortcutName.Text = "";
+            if (!string.IsNullOrEmpty(_allShortcuts))
+            {
+                txtShortcuts.Text = _allShortcuts;
+                lblStatus.Text = $"Showing all {CountLines(_allShortcuts)} keyboard shortcuts.";
+            }
         }
     }
 }
