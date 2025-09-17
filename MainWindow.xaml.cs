@@ -18,16 +18,63 @@ namespace ShortcutsReader
         private string _allShortcuts = "";
         private string _currentFilter = "";
         private KeyboardKeyListener _shortcutListener;
+        private Dictionary<TextBox, string> _originalTexts = new Dictionary<TextBox, string>();
+        private bool _isControlPressed = false;
 
         public MainWindow()
         {
             InitializeComponent();
             LoadLastFilePath();
 
+            InitializeOriginalTexts();
+
             _shortcutListener = new KeyboardKeyListener();
             _shortcutListener.OnKeyPressed += ShortcutListener_OnKeyPressed;
             _shortcutListener.OnKeyReleased += ShortcutListener_OnKeyReleased;
             _shortcutListener.HookKeyboard();
+        }
+
+        private void InitializeOriginalTexts()
+        {
+            var grid = FindName("GridWithNumbers") as Grid;
+            if (grid == null)
+            {
+                // Jeśli nie możesz znaleźć po nazwie, znajdź siatką programowo
+                grid = FindGridInVisualTree();
+            }
+
+            if (grid != null)
+            {
+                foreach (UIElement child in grid.Children)
+                {
+                    if (child is TextBox textBox)
+                    {
+                        _originalTexts[textBox] = textBox.Text;
+                    }
+                }
+            }
+        }
+
+        private Grid FindGridInVisualTree()
+        {
+            var mainGrid = this.Content as Grid;
+            if (mainGrid != null)
+            {
+                foreach (UIElement child in mainGrid.Children)
+                {
+                    if (child is Grid grid && Grid.GetRow(child) == 3)
+                    {
+                        foreach (UIElement innerChild in grid.Children)
+                        {
+                            if (innerChild is Grid innerGrid && Grid.GetRow(innerChild) == 1)
+                            {
+                                return innerGrid;
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         private void LoadLastFilePath()
@@ -112,6 +159,12 @@ namespace ShortcutsReader
             bool altPressed = IsKeyPressed(Key.LeftAlt) || IsKeyPressed(Key.RightAlt);
             bool shiftPressed = IsKeyPressed(Key.LeftShift) || IsKeyPressed(Key.RightShift);
 
+            if (ctrlPressed && !_isControlPressed)
+            {
+                _isControlPressed = true;
+                ChangeGridTextsToKurde();
+            }
+
             var filter = new StringBuilder(25);
             if (ctrlPressed) filter.Append("Control + ");
             if (altPressed) filter.Append("Alt + ");
@@ -122,12 +175,20 @@ namespace ShortcutsReader
             if (newFilter != _currentFilter && !string.IsNullOrEmpty(_allShortcuts))
             {
                 _currentFilter = newFilter;
-                ApplyShortcutFilter();
+                ApplyShortcutFilter();      
             }
+            if(txtShortcutName.Text != "")
+                PerformSearch();
         }
 
         private void ShortcutListener_OnKeyReleased(object sender, KeyReleasedArgs e)
         {
+            if ((e.KeyReleased == Key.LeftCtrl || e.KeyReleased == Key.RightCtrl) && _isControlPressed)
+            {
+                _isControlPressed = false;
+                RestoreOriginalTexts();
+            }
+
             if ((e.KeyReleased == Key.LeftCtrl || e.KeyReleased == Key.RightCtrl ||
                  e.KeyReleased == Key.LeftAlt || e.KeyReleased == Key.RightAlt ||
                  e.KeyReleased == Key.LeftShift || e.KeyReleased == Key.RightShift) &&
@@ -136,6 +197,8 @@ namespace ShortcutsReader
                 _currentFilter = "";
                 ApplyShortcutFilter();
             }
+            if (txtShortcutName.Text != "")
+                PerformSearch();
         }
 
         private bool IsKeyPressed(Key key)
@@ -184,13 +247,11 @@ namespace ShortcutsReader
 
             if (string.IsNullOrEmpty(searchTerm))
             {
-                // Jeśli pole wyszukiwania jest puste, pokaż wszystkie skróty
                 txtShortcuts.Text = _allShortcuts;
                 lblStatus.Text = $"Showing all {CountLines(_allShortcuts)} keyboard shortcuts.";
                 return;
             }
 
-            // Wyszukaj skróty zawierające podany tekst (case-insensitive)
             var lines = _allShortcuts.Split('\n');
             var filtered = lines.Where(line =>
                 line.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) &&
@@ -201,7 +262,6 @@ namespace ShortcutsReader
             lblStatus.Text = $"Search '{searchTerm}' - found {filtered.Length} shortcuts.";
         }
 
-        // Dodaj również metodę do czyszczenia wyszukiwania (opcjonalnie)
         private void ClearSearch()
         {
             txtShortcutName.Text = "";
@@ -210,6 +270,27 @@ namespace ShortcutsReader
                 txtShortcuts.Text = _allShortcuts;
                 lblStatus.Text = $"Showing all {CountLines(_allShortcuts)} keyboard shortcuts.";
             }
+        }
+
+        private void ChangeGridTextsToKurde()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                foreach (var textBox in _originalTexts.Keys)
+                {
+                    textBox.Text = "kurde";
+                }
+            });
+        }
+        private void RestoreOriginalTexts()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                foreach (var kvp in _originalTexts)
+                {
+                    kvp.Key.Text = kvp.Value;
+                }
+            });
         }
     }
 }

@@ -9,10 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BE64E54E-0338-4EC6-8D56-600DF30AE035}|ShortcutsReader.csproj|c:\\users\\adria\\source\\repos\\shortcutsreader\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE64E54E-0338-4EC6-8D56-600DF30AE035}|ShortcutsReader.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE64E54E-0338-4EC6-8D56-600DF30AE035}|ShortcutsReader.csproj|c:\\users\\adria\\source\\repos\\shortcutsreader\\services\\keyboardkeylistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE64E54E-0338-4EC6-8D56-600DF30AE035}|ShortcutsReader.csproj|solutionrelative:services\\keyboardkeylistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,20 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 236,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "KeyboardKeyListener.cs",
-              "DocumentMoniker": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\Services\\KeyboardKeyListener.cs",
-              "RelativeDocumentMoniker": "Services\\KeyboardKeyListener.cs",
-              "ToolTip": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\Services\\KeyboardKeyListener.cs",
-              "RelativeToolTip": "Services\\KeyboardKeyListener.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T17:06:38.143Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -56,7 +40,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\adria\\source\\repos\\ShortcutsReader\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAowKcAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAUwBwBAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-13T15:42:07.811Z",
               "EditorCaption": ""
